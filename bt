@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Credit: https://trevorsullivan.net/2019/07/30/control-bluetooth-on-apple-macbook-pro-from-the-command-line/
+
+# 1. Install blueutil:
+#     brew install blueutil
+# 2. Find the device address and update it below:
+#     blueutil --info
+# 3. Place the script in your path and enjoy
+
+ADDRESS=""
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+isConnected() {
+    blueutil --info ${ADDRESS} | grep "not connected" 2>&1 > /dev/null
+    if [ $? -eq 0 ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+if [ -z ${ADDRESS} ]
+then
+      echo "Please define a valid BT device address in the script code."
+      exit 1
+fi
+
+if isConnected; then
+    echo -n "Disconnecting... "
+    blueutil --disconnect ${ADDRESS}
+    if isConnected; then
+        printf "${RED}ERROR${NC}\n"
+    else
+         printf "${GREEN}OK${NC}\n"
+    fi
+else
+    echo -n "Connecting... "
+    blueutil --connect ${ADDRESS}
+    if isConnected; then
+        printf "${GREEN}OK${NC}\n"
+    else
+        printf "${RED}ERROR${NC}\n"
+    fi
+
+fi
