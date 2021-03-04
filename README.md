@@ -8,7 +8,7 @@ Turn a BT device on and off on a Mac's CLI.
 
 1. Install blueutil:
     brew install blueutil
-1. Find the device address using `blueutil --info` and update it in the `bt` script code.
+1. Find the device address using `blueutil --paired` and update it in the `bt` script code.
 1. Run `./bt`
 1. Place the script in your path so that you can run 'bt' from everywhere
 
