@@ -2,11 +2,12 @@
 
 # Credit: https://trevorsullivan.net/2019/07/30/control-bluetooth-on-apple-macbook-pro-from-the-command-line/
 
-# 1. Install blueutil:
+# 1. Place the script in your path
+# 2. Install blueutil:
 #     brew install blueutil
-# 2. Find the device address and update it below:
+# 3. Find the device address and update it below:
 #     blueutil --info
-# 3. Place the script in your path and enjoy
+# 4. Run ./bt
 
 ADDRESS=""
 
